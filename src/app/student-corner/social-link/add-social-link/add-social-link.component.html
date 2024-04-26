@@ -1,0 +1,28 @@
+<div mat-dialog-title>Add Social Link</div>
+<form [formGroup]="LinkForm" (ngSubmit)="onFormSubmit()">
+  <div class="content">
+    <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>Link Name</mat-label>
+            <input matInput type="text" placeholder="Ex. Google" formControlName="name">
+            <mat-error
+              *ngIf="LinkForm.get('name')?.touched && LinkForm.get('name')?.errors?.['required']"
+              >Link Name is a required*</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Link</mat-label>
+            <input matInput placeholder="Ex. https://www.youtube.com/" type="text" formControlName="link">
+            <mat-error
+              *ngIf="LinkForm.get('link')?.touched && LinkForm.get('link')?.errors?.['required']"
+              >Link is a required*</mat-error
+            >
+          </mat-form-field>
+          
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" [disabled]="LinkForm.invalid" type="submit">{{data.type == 'add'?'Save':'Update'}}</button>
+    </div>
+  </div>
+</form>

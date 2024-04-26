@@ -1,0 +1,89 @@
+.loader-container {
+    display: flex;
+        justify-content: center;
+         align-items: center;
+         position: absolute;
+         width: 100%;
+         height: 100%;
+         opacity: 1;
+         z-index: 99999;
+       }
+    
+     :host ::ng-deep .mat-progress-spinner circle,
+     .mat-spinner circle {
+       stroke: rgb(235, 118, 9);
+       stroke-width: 10% !important;
+       width: 50%;
+       animation: rotate 1.5s infinite linear;
+     }
+
+/* Styles for the navigation menu */
+.nav {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* .nav-link {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
+} */
+
+/* .nav-link:hover {
+  background-color: #f0f0f0;
+  color: #000;
+} */
+
+.active {
+  background-color: #cccfd3;
+  color: #fff;
+}
+
+/* .nav-link[aria-expanded="true"] {
+  background-color: #a9b0b8 !important;
+} */
+
+/* Styles for the accordion */
+/* .collapse {
+  display: none;
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+} */
+
+/* .collapse.open {
+  display: block;
+} */
+
+/* .caret {
+  float: right;
+  margin-top: 7px;
+} */
+
+/* Icon styles */
+/* .material-icons {
+  font-size: 20px;
+  margin-right: 10px;
+} */
+
+/* Style for SVG icons within the .nav-link */
+.nav-link .bi-chevron-down svg,
+.nav-link .material-icons {
+    width: 24px; /* Adjust this value for the desired width */
+    height: 24px; /* Adjust this value for the desired height */
+    vertical-align: middle;
+}
+
+/* Positioning for chevron-down icon */
+.nav-link .bi-chevron-down svg {
+    position: absolute;
+    top: 50%;
+    right: 26px; /* Adjust this value for the desired distance from the right edge */
+    transform: translateY(-50%);
+}
+
+/* Additional styles for .nav-link (if needed) */
+.nav-link {
+    position: relative; /* Add this to make sure absolute positioning works correctly */
+}

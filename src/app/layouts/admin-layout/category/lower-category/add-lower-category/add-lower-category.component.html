@@ -1,0 +1,31 @@
+<div mat-dialog-title>Add Lower Menu</div>
+<form [formGroup]="lowerCategoryForm" (ngSubmit)="onFormSubmit()">
+  <div class="content">
+    <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>Sub Menu</mat-label>
+            <mat-select formControlName="sub_category_id">
+              <mat-option *ngFor="let item of subCategoryList" [value]="item.sub_category_id">
+                {{item.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>    
+        <mat-form-field appearance="outline">
+            <mat-label>Lower Menu Name</mat-label>
+            <input matInput type="text" placeholder="Ex. Home" formControlName="name">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Rank</mat-label>
+            <input matInput placeholder="Ex. 1" type="number" formControlName="rank">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Link</mat-label>
+            <input matInput type="text" placeholder="Ex. Link" formControlName="link">
+          </mat-form-field>
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">{{data.type == 'add'?'Save':'Update'}}</button>
+    </div>
+  </div>
+</form>

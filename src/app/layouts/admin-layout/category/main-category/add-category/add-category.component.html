@@ -1,0 +1,23 @@
+<div mat-dialog-title>Add Menu</div>
+<form [formGroup]="categoryForm" (ngSubmit)="onFormSubmit()">
+  <div class="content">
+    <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>Menu Name</mat-label>
+            <input matInput type="text" placeholder="Ex. Home" formControlName="name">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Rank</mat-label>
+            <input matInput placeholder="Ex. 1" type="number" formControlName="rank">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>URL Links</mat-label>
+            <input matInput placeholder="Ex. Links" type="text" formControlName="link">
+          </mat-form-field>
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">{{data.type == 'add'?'Save':'Update'}}</button>
+    </div>
+  </div>
+</form>

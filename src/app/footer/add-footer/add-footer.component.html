@@ -1,0 +1,37 @@
+<div mat-dialog-title>Add Footer</div>
+<form [formGroup]="footerForm" (ngSubmit)="onFormSubmit()">
+  <div class="content">
+    <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>Footer Name</mat-label>
+            <input matInput type="text" placeholder="Ex. Google" formControlName="name">
+            <mat-error
+              *ngIf="footerForm.get('name')?.touched && footerForm.get('name')?.errors?.['required']"
+              >Footer Name is a required*</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Link</mat-label>
+            <input matInput placeholder="Ex. https://www.youtube.com/" type="text" formControlName="link">
+            <mat-error
+              *ngIf="footerForm.get('link')?.touched && footerForm.get('link')?.errors?.['required']"
+              >Link is a required*</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Rank</mat-label>
+            <input matInput placeholder="Ex. 1" type="number" formControlName="rank">
+            <mat-error 
+            *ngIf="footerForm.get('rank')?.touched && footerForm.get('rank')?.errors?.['required']"
+            >Rank is required*</mat-error
+            >
+          </mat-form-field>
+          
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" [disabled]="footerForm.invalid" type="submit">{{data.type == 'add'?'Save':'Update'}}</button>
+    </div>
+  </div>
+</form>

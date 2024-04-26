@@ -1,0 +1,221 @@
+
+<mat-toolbar color="primary">  
+  Add Blog
+</mat-toolbar>
+<div class="container">
+  <form [formGroup]="blogForm">
+    <div class="content">
+      <div class="card section">
+        <mat-form-field appearance="outline">
+          <mat-label>Title</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Ex. Title"
+            formControlName="title"
+          />
+          <mat-error
+            *ngIf="blogForm.get('title')?.touched && blogForm.get('title')?.errors?.['required']"
+            >Title is a required*</mat-error
+          >
+        </mat-form-field>
+  
+        <!-- <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <input
+            matInput
+            placeholder="Ex. description"
+            type="text"
+            formControlName="description"
+          />
+          <mat-error
+            *ngIf="blogForm.get('description')?.touched &&  blogForm.get('description')?.errors?.['required']"
+            >Description is a required*</mat-error
+          >
+        </mat-form-field> -->
+        
+        <mat-form-field appearance="outline">
+          <mat-label>Slug</mat-label>
+          <input
+            matInput
+            placeholder="Enter slug..."
+            type="text"
+            formControlName="slug"
+          />
+          <mat-error
+            *ngIf="blogForm.get('slug')?.touched &&  blogForm.get('slug')?.errors?.['slug']"
+            >Slug is a required*</mat-error
+          >
+        </mat-form-field>
+        <div>
+          <mat-label>Description</mat-label>
+          <ckeditor [editor]="Editor" formControlName="description" matInput></ckeditor>
+          <mat-error
+            *ngIf="blogForm.get('description')?.errors?.['required']">Description is a required*
+          </mat-error>
+        </div>
+  
+     
+        <h3>SEO Content</h3>
+        <mat-form-field appearance="outline">
+          <mat-label>Enter Meta Title</mat-label>
+          <input
+            matInput
+            placeholder="Enter title..."
+            type="text"
+            formControlName="meta_title"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Enter Meta Description</mat-label>
+          <input
+            matInput
+            placeholder="Enter Description..."
+            type="text"
+            formControlName="meta_description"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Enter Meta Keywords</mat-label>
+          <input
+            matInput
+            placeholder="Enter keywords..."
+            type="text"
+            formControlName="meta_keywords"
+          />
+        </mat-form-field>
+
+        <div style="text-align: right;">
+          <button
+          *ngIf="blogUpdate"
+          mat-raised-button
+          (click)="updateBlogDetails(blogForm.value)"
+          class="btn btn-success"
+        >
+          Save
+        </button>
+        </div>
+      </div>
+      <hr>
+      <!-- <div >Add Sub Title</div>
+      <div class="card section" *ngFor="let j of subTitleList">
+        <mat-form-field appearance="outline">
+          <mat-label>Rank</mat-label>
+          <input
+            matInput
+            placeholder="Enter rank..."
+            type="number"
+            [(ngModel)]="j.rank"
+            [ngModelOptions]="{ standalone: true }"
+            [disabled]="true"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Sub Title Name</mat-label>
+          <input
+            matInput
+            placeholder="Enter Sub Title..."
+            type="text"
+            [(ngModel)]="j.title"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </mat-form-field> -->
+        <!-- <mat-form-field appearance="outline">
+          <mat-label>Sub Heading Points</mat-label>
+          <div class="col">
+            <input
+              matInput
+              type="text"
+              placeholder="Enter point..."
+              #coursepoint
+            />
+            <button
+              class="btn btn-primary addPointBtn"
+              (click)="addSubTitlePoints(coursepoint, j)"
+              mat-raised-button
+            >
+              Add
+            </button>
+          </div>
+        </mat-form-field> -->
+        <!-- <div>
+          <ol>
+            <li *ngFor="let item of j.subHeadingPoints; let i = index">
+              {{ item }}
+              <mat-icon class="removeBtn" (click)="removeSubTitlePoint(j, item)"
+                >clear</mat-icon
+              >
+            </li>
+          </ol>
+        </div> -->
+<!-- 
+        <div style="text-align: right;">
+          <button
+          *ngIf="blogUpdate"
+          mat-raised-button
+          (click)="updateSubTitleCard(j)"
+          class="btn btn-success"
+        >
+          Save
+        </button>
+        <button
+          mat-raised-button
+          (click)="removeSubTitleCard(j)"
+          class="btn btn-danger"
+        >
+          REMOVE
+        </button>
+        </div> -->
+        
+      <!-- </div> -->
+      <!-- <div class="col-md-2">
+        
+        <button mat-raised-button class="btn btn-primary" (click)="addSubTitle()">
+          Add NEW
+        </button>
+      </div> -->
+      <hr>
+      <div>Upload Blog Image</div>
+      
+      <div>
+        <button type="button" mat-raised-button (click)="fileInput.click()">
+          Choose File
+        </button>
+          <!-- <button type="button" mat-raised-button class="btn btn-success" (click)="updateBlogImage()">
+            Update
+          </button> -->
+        <input
+          hidden
+          accept="image/*"
+          (change)="onFileSelected()"
+          #fileInput
+          type="file"
+          id="file"
+        />
+        <mat-error *ngIf="isFileNotSelected">Image is a required</mat-error>
+      </div>
+      <div *ngIf="selectedImage" class="card image mt-3">
+        <img
+          
+          [src]="selectedImage"
+          alt=""
+        />
+      </div>
+      
+
+      <div mat-dialog-actions class="action" style ="text-align: right">
+        <button
+        *ngIf="!blogUpdate"
+          mat-raised-button
+          class="btn btn-success"
+          type="submit"
+          (click)="addBlog(blogForm.value)"
+        >
+          Save Blog page
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

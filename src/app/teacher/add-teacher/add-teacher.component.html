@@ -1,0 +1,58 @@
+<div mat-dialog-title>Add Teacher</div>
+<form [formGroup]="teacherForm" (ngSubmit)="onFormSubmit()">
+  <div class="content">
+    <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>Teacher Name</mat-label>
+            <input matInput type="text" placeholder="Ex. Rahul" formControlName="name">
+            <mat-error
+              *ngIf="teacherForm.get('name')?.touched && teacherForm.get('name')?.errors?.['required']"
+              >Teacher Name is a required*</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Rank</mat-label>
+            <input matInput placeholder="Ex. 1" type="number" formControlName="rank">
+            <mat-error
+              *ngIf="teacherForm.get('rank')?.touched && teacherForm.get('rank')?.errors?.['required']"
+              >Rank is a required*</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="Ex. 1" type="text" formControlName="description">
+            <mat-error
+              *ngIf="teacherForm.get('description')?.touched && teacherForm.get('description')?.errors?.['required']"
+              >Description is a required*</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Slug</mat-label>
+            <input matInput placeholder="Ex. 1" type="text" formControlName="slug">
+            <mat-error
+              *ngIf="teacherForm.get('slug')?.touched && teacherForm.get('slug')?.errors?.['required']"
+              >Slug is a required*</mat-error
+            >
+          </mat-form-field>
+          <!-- <mat-form-field appearance="outline"> -->
+            <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+            <input hidden  accept="image/*" (change)="onFileSelected()" #fileInput type="file" id="file">
+            <mat-error
+              *ngIf="isFileNotSelected"
+              >Image is a required</mat-error
+            >
+            <mat-error
+              *ngIf="!isFileValid"
+              >Please Upload Image</mat-error
+            >
+            <div>{{ selectedFileName }}</div>
+
+          <!-- </mat-form-field> -->
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" [disabled]="teacherForm.invalid || !isFileValid" type="submit">{{data.type == 'add'?'Save':'Update'}}</button>
+    </div>
+  </div>
+</form>

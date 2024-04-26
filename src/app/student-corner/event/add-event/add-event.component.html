@@ -1,0 +1,93 @@
+<div mat-dialog-title>Add Event</div>
+<form [formGroup]="eventForm" (ngSubmit)="onFormSubmit()">
+  <div class="content">
+    <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>Title</mat-label>
+            <input matInput type="text" placeholder="Ex. 	Seminar on ‘Machine Learning’" formControlName="title">
+            <mat-error
+              *ngIf="eventForm.get('title')?.touched && eventForm.get('title')?.errors?.['required']"
+              >Title is a required*</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="Ex. description" type="text" formControlName="description">
+            <mat-error
+              *ngIf="eventForm.get('description')?.touched && eventForm.get('description')?.errors?.['required']"
+              >Description is a required*</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Topic</mat-label>
+            <input matInput placeholder="Ex. Topic" type="text" formControlName="topic">
+            <mat-error
+              *ngIf="eventForm.get('topic')?.touched && eventForm.get('topic')?.errors?.['required']"
+              >Topic is a required*</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Speaker</mat-label>
+            <input matInput placeholder="Ex. Speaker" type="text" formControlName="speaker">
+            <mat-error
+              *ngIf="eventForm.get('speaker')?.touched && eventForm.get('speaker')?.errors?.['required']"
+              >Speaker is a required*</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Venue</mat-label>
+            <input matInput placeholder="Ex. Venue" type="text" formControlName="venue">
+            <mat-error
+              *ngIf="eventForm.get('venue')?.touched && eventForm.get('venue')?.errors?.['required']"
+              >Venue is a required*</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Slug</mat-label>
+            <input matInput placeholder="Ex. Slug" type="text" formControlName="slug">
+            <mat-error
+              *ngIf="eventForm.get('slug')?.touched && eventForm.get('slug')?.errors?.['required']"
+              >Slug is a required*</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Date of Event</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date" />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          
+
+          <!-- <mat-form-field appearance="outline"> -->
+            <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+            <input hidden  accept="image/*" (change)="onFileSelected()" #fileInput type="file" id="file">
+            <mat-error
+              *ngIf="isFileNotSelected"
+              >Image is a required</mat-error
+            >
+            
+
+          <!-- </mat-form-field> -->
+          <div class="card image mt-3" *ngIf="selectedSliderImage">
+            <img
+              [src]="selectedSliderImage"
+              alt=""
+            />
+          </div>
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" [disabled]="eventForm.invalid" type="submit">{{data.type == 'add'?'Save':'Update'}}</button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,52 @@
+<div mat-dialog-title>Add Slider</div>
+<form [formGroup]="sliderForm" (ngSubmit)="onFormSubmit()">
+  <div class="content">
+    <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>Slider Name</mat-label>
+            <input matInput type="text" placeholder="Ex. Rahul" formControlName="name">
+            <mat-error
+              *ngIf="sliderForm.get('name')?.touched && sliderForm.get('name')?.errors?.['required']"
+              >Slider Name is a required*</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Rank</mat-label>
+            <input matInput placeholder="Ex. 1" type="number" formControlName="rank">
+            <mat-error
+              *ngIf="sliderForm.get('rank')?.touched && sliderForm.get('rank')?.errors?.['required']"
+              >Rank is a required*</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="Ex. 1" type="text" formControlName="description">
+            <mat-error
+              *ngIf="sliderForm.get('description')?.touched && sliderForm.get('description')?.errors?.['required']"
+              >Description is a required*</mat-error
+            >
+          </mat-form-field>
+
+          <!-- <mat-form-field appearance="outline"> -->
+            <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+            <input hidden  accept="image/*" (change)="onFileSelected()" #fileInput type="file" id="file">
+            <mat-error
+              *ngIf="isFileNotSelected"
+              >Image is a required</mat-error
+            >
+            
+
+          <!-- </mat-form-field> -->
+          <div class="card image mt-3" *ngIf="selectedSliderImage">
+            <img
+              [src]="selectedSliderImage"
+              alt=""
+            />
+          </div>
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" [disabled]="sliderForm.invalid || !isFileValid" type="submit">{{data.type == 'add'?'Save':'Update'}}</button>
+    </div>
+  </div>
+</form>
